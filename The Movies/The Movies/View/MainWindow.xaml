@@ -6,7 +6,58 @@
         xmlns:local="clr-namespace:The_Movies.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="452*"/>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="293*"/>
+        </Grid.ColumnDefinitions>
 
+        <!-- Venstre: DataGrid -->
+        <DataGrid Grid.Column="0" Grid.Row="1"
+              ItemsSource="{Binding Cars}"
+              SelectedItem="{Binding SelectedCar, Mode=TwoWay}"
+              AutoGenerateColumns="False"
+              Margin="0,0,10,0"
+              IsReadOnly="True"
+              Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Titel" Binding="{Binding Brand}" Width="*" />
+                <DataGridTextColumn Header="Genre" Binding="{Binding Model}" Width="*" />
+                <DataGridTextColumn Header="Varighed" Binding="{Binding LicensePlate}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Højre: Inputfelter og knapper -->
+        <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" Margin="10,0,0,0">
+            <Label Content="Genre:"/>
+            <ComboBox ItemsSource="{Binding CarTypes}"
+              SelectedItem="{Binding SelectedCarType, UpdateSourceTrigger=PropertyChanged}"
+              Margin="0,0,0,10"/>
+
+            <Label Content="Titel:"/>
+            <TextBox Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+            <Label Content="Varighed:"/>
+            <TextBox Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Content="Tilføj film" Width="250" Height="25" Margin="0,190,10,0"
+                    Command="{Binding }"
+                        Background="DeepSkyBlue"/>
+
+
+            </StackPanel>
+
+            <!-- Næste row af knapper hvis brug for -->         
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
