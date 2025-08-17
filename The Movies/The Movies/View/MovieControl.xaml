@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="The_Movies.View.MovieControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:The_Movies.View"
+             xmlns:converters="clr-namespace:The_Movies.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:GenreListToStringConverter x:Key="GenreListConverter"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="452*"/>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="293*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Venstre: DataGrid -->
+        <DataGrid Grid.Column="0"
+              ItemsSource="{Binding Movies}"
+              AutoGenerateColumns="False"
+              Margin="0,0,10,0"
+              IsReadOnly="True"
+              Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Titel" Binding="{Binding Title}" Width="*" />
+                <DataGridTextColumn Header="Genre" Binding="{Binding Genres, 
+                                    Converter={StaticResource GenreListConverter}}" 
+                                    Width="*" />
+                <DataGridTextColumn Header="Varighed" Binding="{Binding Duration}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Højre: Inputfelter, knapper og genreboks -->
+        <StackPanel Grid.Column="3" VerticalAlignment="Top" Margin="10,0,0,0">
+            <Label Content="Vælg genre:" />
+            <ListBox ItemsSource="{Binding AllGenres}" 
+                     x:Name="GenreListBox"
+                     SelectionMode="Multiple"
+                     Height="120"
+                     Width="260"
+                     Margin="0,0,0,10"
+                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <!-- Antal kolonner til genrer -->
+                        <UniformGrid Columns="4" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="1.5"/>
+                        <Setter Property="Padding" Value="5,2"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+
+            <!-- Inputfelter -->
+            <Label Content="Titel:"/>
+            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+            <Label Content="Varighed:"/>
+            <TextBox Text="{Binding Duration, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+            <!-- Knapper -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Content="Tilføj film" Width="250" Height="25" Margin="0,20,10,0"
+                    Command="{Binding AddMovieCommand}"
+                    CommandParameter="{Binding ElementName=GenreListBox, Path=SelectedItems}"
+                        Background="DeepSkyBlue"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
