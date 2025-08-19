@@ -34,7 +34,7 @@ namespace The_Movies.ViewModel
             }
         }
 
-        // Array til alle genrer
+        // Array til alle genrer - Bruges til Listboxen
         public Array AllGenres => Enum.GetValues(typeof(Genre));
 
         // Liste over de valgte genrer
@@ -53,6 +53,9 @@ namespace The_Movies.ViewModel
         }
 
         // Metoder
+
+        // Genrer kommer fra ListBox, som har en indbygget SelectedItems. Det sender så netop de valgte genrer til metoden her.
+        // De bliver sendt igennem CommandParameter i xaml når knappen senere bruges. Genren(ene) kommer fra RelayCommand efter, hvor execute er variablen med "selecteditems i"
         private void AddMovie(object selectedItems)
         {
             var movie = new Movie
