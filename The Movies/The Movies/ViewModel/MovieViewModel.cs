@@ -7,13 +7,23 @@ using System.Text;
 using System.Threading.Tasks;
 using The_Movies.Model;
 using The_Movies.MVVM;
+using The_Movies.Repository;
 
 namespace The_Movies.ViewModel
 {
     internal class MovieViewModel : ViewModelBase
     {
+        // Repository
+        private readonly CsvMovieGuide _csvMovieGuide;
+
+        
+        
+        // Felter til film
+        
         private string _title { get; set; }
         private string _duration { get; set; }
+
+        // Properties til film
 
         public string Title
         {
@@ -47,16 +57,30 @@ namespace The_Movies.ViewModel
         // Konstruktør
         public MovieViewModel()
         {
-            Movies = new ObservableCollection<Movie>();
+            // Intialisere et objekt af repository, sætter movies = en ny observablecollection og loader derefter alle film ind fra fil i listen.
 
-            // Mangler at hente direkte fra filen af film og indlæse dem når program starter
+            _csvMovieGuide = new CsvMovieGuide();
+            Movies = new ObservableCollection<Movie>();
+            LoadMoviesAsync();
+        }
+
+        
+        // Henter alle film fra repository
+        // Await sørger for at programmet kører videre, selvom den kan hente en stor fil.
+        private async void LoadMoviesAsync()
+        {
+            var moviesFromCsv = await _csvMovieGuide.IndlæsFilmFraCsv();
+            foreach (var movie in moviesFromCsv)
+            {
+                Movies.Add(movie);
+            }
         }
 
         // Metoder
 
         // Genrer kommer fra ListBox, som har en indbygget SelectedItems. Det sender så netop de valgte genrer til metoden her.
         // De bliver sendt igennem CommandParameter i xaml når knappen senere bruges. Genren(ene) kommer fra RelayCommand efter, hvor execute er variablen med "selecteditems i"
-        private void AddMovie(object selectedItems)
+        private async void AddMovie(object selectedItems)
         {
             var movie = new Movie
             {
@@ -71,6 +95,7 @@ namespace The_Movies.ViewModel
             }
 
             Movies.Add(movie);
+            await _csvMovieGuide.GemEnFilmTilCsv(movie);
 
             // Reset felter
             Title = string.Empty;
