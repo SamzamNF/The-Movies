@@ -35,5 +35,8 @@ namespace The_Movies.Model
         public string Title { get; set; }
         public TimeSpan Duration { get; set; }
         public List<Genre> Genres { get; set; } = new();
+
+        public string Director { get; set; }
+        public DateTime PremierDate { get; set; }
     }
 }

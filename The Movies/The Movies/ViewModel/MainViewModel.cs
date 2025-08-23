@@ -14,12 +14,11 @@ namespace The_Movies.ViewModel
 {
     internal class MainViewModel : ViewModelBase
     {
+        // Konstruktør som sørger for programmet starter med at sætte viewet "Movie" til at være det første program vist
         public MainViewModel()
         {
             CurrentView = new MovieControl();
-        }
-        
-        
+        }       
         
         //Opretter view felt
         private object _currentView;
