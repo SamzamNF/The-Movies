@@ -16,9 +16,7 @@ using The_Movies.ViewModel;
 
 namespace The_Movies.View
 {
-    /// <summary>
-    /// Interaction logic for MovieControl.xaml
-    /// </summary>
+
     public partial class MovieControl : UserControl
     {
         public MovieControl()
