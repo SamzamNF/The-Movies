@@ -37,10 +37,17 @@ namespace The_Movies.ViewModel
         //Command, der skifter til MovieView når knappen klikkes (ikke implementeret endnu)
         public RelayCommand ShowMovieViewCommand => new RelayCommand(execute => ShowMovieView());
 
+        public RelayCommand ShowProgramViewCommand => new RelayCommand(execute => ShowProgramView());
+
         //Skifter det det valgte view til MovieControl
         private void ShowMovieView()
         {
             CurrentView = new MovieControl(); // Skift til MovieView
+        }
+
+        private void ShowProgramView()
+        {
+            CurrentView = new ScheduleControl(); // Skift til ScheduleControlView
         }
 
     }
