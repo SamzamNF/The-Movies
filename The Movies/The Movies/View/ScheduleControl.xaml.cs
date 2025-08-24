@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using The_Movies.ViewModel;
 
 namespace The_Movies.View
 {
@@ -21,6 +22,8 @@ namespace The_Movies.View
         public ScheduleControl()
         {
             InitializeComponent();
+            ScheduleControlViewModel mv = new ScheduleControlViewModel();
+            DataContext = mv;
         }
     }
 }
