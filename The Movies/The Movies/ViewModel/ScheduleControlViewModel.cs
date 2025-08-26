@@ -116,7 +116,7 @@ namespace The_Movies.ViewModel
 
         // Henter alle film fra repository
         // Await sørger for at programmet kører videre, selvom den kan hente en stor fil.
-        private async void LoadMoviesAsync()
+        private async Task LoadMoviesAsync()
         {
             var loadedMovies = await _csvMovieGuide.IndlæsFilmFraCsv();
             Movies.Clear();
@@ -142,9 +142,6 @@ namespace The_Movies.ViewModel
         // Felter til MovieProgram
         private DateTime _playTime;
         
-        // Disse to ting kan nok godt fjernes samt de properties der passer til
-        private string _hallnumber;
-        private TimeSpan _playDuration;
 
         // Properties til MovieProgram
         public DateTime PlayTime
@@ -156,23 +153,8 @@ namespace The_Movies.ViewModel
                 OnPropertyChanged();
             }
         }
-        public string Hallnumber
-        {
-            get => _hallnumber;
-            set
-            {
-                _hallnumber = value;
-            }
-        }
-        public TimeSpan PlayDuration
-        {
-            get => _playDuration;
-            set
-            {
-                _playDuration = value;
-                OnPropertyChanged();
-            }
-        }
+
+
 
         // Liste til at holde over programmerne
         public ObservableCollection<MovieProgram> MoviePrograms { get; set; }

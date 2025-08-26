@@ -15,8 +15,6 @@ namespace The_Movies.Model
         public TimeSpan PlayDuration { get; set; }
         // mangler evt id?
 
-        // Mangler at tiføje 15+15 min i duration fra movies duration
-
         
         public override string ToString()
         {
@@ -27,13 +25,16 @@ namespace The_Movies.Model
 
         public static MovieProgram FromString(string data)
         {
+            // Tjekker om dataen er tomt
             if (string.IsNullOrEmpty(data))
                 return null;
 
+            // Splitter dataen op og tjekker om der er 8 parts
             var parts = data.Split(';');
             if (parts.Length != 8)
                 return null;
 
+            // Tildeler de forskellige variabler deres data, ud fra parts nummer
             var title = parts[0];
             var director = parts[1];
             var premierDate = DateTime.ParseExact(parts[2], "dd-MM-yyyy", null);
@@ -52,6 +53,7 @@ namespace The_Movies.Model
             }
 
 
+            // Tildeler de resterende dataparts deres variabel ud fra deres nummer
             var movieDuration = TimeSpan.Parse(parts[4]);
             var playDuration = TimeSpan.Parse(parts[5]);
             var playTime = DateTime.ParseExact(parts[6], "dd-MM-yyyy HH:mm", null);

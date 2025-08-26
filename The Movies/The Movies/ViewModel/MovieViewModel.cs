@@ -67,7 +67,7 @@ namespace The_Movies.ViewModel
         
         // Henter alle film fra repository
         // Await sørger for at programmet kører videre, selvom den kan hente en stor fil.
-        private async void LoadMoviesAsync()
+        private async Task LoadMoviesAsync()
         {
             var moviesFromCsv = await _csvMovieGuide.IndlæsFilmFraCsv();
             foreach (var movie in moviesFromCsv)
