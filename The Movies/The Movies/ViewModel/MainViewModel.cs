@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 
 namespace The_Movies.ViewModel
 {
+    // Kan også være internal - lavet public for unittesting 
     public class MainViewModel : ViewModelBase
     {
         // Konstruktør som sørger for programmet starter med at sætte viewet "Movie" til at være det første program vist

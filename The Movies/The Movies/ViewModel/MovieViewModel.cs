@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 using The_Movies.Model;
 using The_Movies.MVVM;
 using The_Movies.Repository;
-// skal bruges hvis vi vil kunne unit teste, ellers er der ingen mulighed for at vi vil kunne få fingre i AddMovie, heller ikke via RelayCommand
-//Alternativt skal den gøres public
-using System.Runtime.CompilerServices;
-[assembly: InternalsVisibleTo("The-Movies.Tests")]
+
 
 namespace The_Movies.ViewModel
 {
+    // Kan være internal - lavet til public for at lave unittesting
     public class MovieViewModel : ViewModelBase
     {
         // Repository

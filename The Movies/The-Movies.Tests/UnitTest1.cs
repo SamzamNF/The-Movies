@@ -16,7 +16,7 @@ namespace The_Movies.Tests
             _vm = new MovieViewModel();
 
              // Fjern udkommenteringen, hvis der skal ryddes op i filen inden
-           // _vm.Movies.Clear();
+           _vm.Movies.Clear();
         }
 
         [Test]
