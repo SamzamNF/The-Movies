@@ -5,10 +5,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("The-Movies.Tests")]
 
 namespace The_Movies.MVVM
 {
-    internal class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         //Interface fra "PropertyChange"
         public event PropertyChangedEventHandler? PropertyChanged;

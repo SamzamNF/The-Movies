@@ -9,10 +9,12 @@ using System.Windows.Input;
 using The_Movies.Model;
 using The_Movies.MVVM;
 using The_Movies.View;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("The-Movies.Tests")]
 
 namespace The_Movies.ViewModel
 {
-    internal class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         // Konstruktør som sørger for programmet starter med at sætte viewet "Movie" til at være det første program vist
         public MainViewModel()
