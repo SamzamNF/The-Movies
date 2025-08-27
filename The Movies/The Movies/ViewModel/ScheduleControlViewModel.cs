@@ -141,6 +141,7 @@ namespace The_Movies.ViewModel
 
         // Felter til MovieProgram
         private DateTime _playTime;
+        private int _tickets;
         
 
         // Properties til MovieProgram
@@ -150,6 +151,15 @@ namespace The_Movies.ViewModel
             set
             {
                 _playTime = value;
+                OnPropertyChanged();
+            }
+        }
+        public int Tickets
+        {
+            get => _tickets;
+            set
+            {
+                _tickets = value;
                 OnPropertyChanged();
             }
         }
@@ -169,11 +179,11 @@ namespace The_Movies.ViewModel
                 // Henter alle programmer fra repository
                 var AllMoviePrograms = _movieProgramRepo.GetAll();
 
-                // Filtrere i en liste alle de halls der passer til den valgte biograf
+                // Filtrere i en liste, alle de halls der passer til den valgte biograf
                 var hallsForCinema = new HashSet<string>(SelectedCinema.Halls.Select(h => h.HallNumber));
 
                 // Filtrere alle programmerne ned i en liste, hvor alle programmer der matcher deres hallNumber med de valgte halls
-                var filteredMoviePrograms = AllMoviePrograms.Where(p => hallsForCinema.Contains(p.HallNumber));
+                var filteredMoviePrograms = AllMoviePrograms.Where(mp => hallsForCinema.Contains(mp.HallNumber));
 
                 // Alle programmer hvor hallNumber = den valgte biografs hallNumber, tilføjes til listen af MoviePrograms
                 foreach (var program in filteredMoviePrograms)
@@ -194,6 +204,7 @@ namespace The_Movies.ViewModel
                 PlayTime = this.PlayTime,
                 HallNumber = SelectedHall.HallNumber,
                 PlayDuration = SelectedMovie.Duration.Add(TimeSpan.FromMinutes(30)),
+                Tickets = this.Tickets
             };
 
             _movieProgramRepo.Add(movieProgram);
@@ -203,6 +214,7 @@ namespace The_Movies.ViewModel
             SelectedMovie = null;
             SelectedHall = null;
             PlayTime = default;
+            Tickets = default;
 
 
 

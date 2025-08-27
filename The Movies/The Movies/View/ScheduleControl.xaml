@@ -55,8 +55,13 @@
             <Label Content="Tidspunkt:" Canvas.Top="180"/>
             <DatePicker SelectedDate="{Binding PlayTime, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="205" Width="283"/>
 
+            <Label Content="Billetter:" Canvas.Top="230"/>
+            <TextBox Text="{Binding Tickets, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="255" Width="283"
+                     Height="25"
+                     Padding="2"/>
+
             <!-- Knapper -->
-            <Grid Canvas.Top="245" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Canvas}}">
+            <Grid Canvas.Top="300" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Canvas}}">
                 <Button Content="Tilføj Program" Command="{Binding AddMovieProgramCommand}" 
                         Width="250"
                         Background="DeepSkyBlue"

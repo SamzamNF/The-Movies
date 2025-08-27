@@ -13,14 +13,15 @@ namespace The_Movies.Model
         public DateTime PlayTime { get; set; }
         public string HallNumber { get; set; }
         public TimeSpan PlayDuration { get; set; }
-        // mangler evt id?
+        public int Tickets { get; set; }
+        public int MovieProgramID { get; set; }
 
         
         public override string ToString()
         {
             string genres = string.Join(",", Movie.Genres); // Brug komma inde i feltet, semikolon mellem felter
 
-            return $"{Movie.Title};{Movie.Director};{Movie.PremierDate:dd-MM-yyyy};{genres};{Movie.Duration};{PlayDuration};{PlayTime:dd-MM-yyyy HH:mm};{HallNumber}";
+            return $"{Movie.Title};{Movie.Director};{Movie.PremierDate:dd-MM-yyyy};{genres};{Movie.Duration};{PlayDuration};{PlayTime:dd-MM-yyyy HH:mm};{HallNumber};{Tickets};{MovieProgramID}";
         }
 
         public static MovieProgram FromString(string data)
@@ -31,7 +32,7 @@ namespace The_Movies.Model
 
             // Splitter dataen op og tjekker om der er 8 parts
             var parts = data.Split(';');
-            if (parts.Length != 8)
+            if (parts.Length != 10)
                 return null;
 
             // Tildeler de forskellige variabler deres data, ud fra parts nummer
@@ -58,6 +59,10 @@ namespace The_Movies.Model
             var playDuration = TimeSpan.Parse(parts[5]);
             var playTime = DateTime.ParseExact(parts[6], "dd-MM-yyyy HH:mm", null);
             var hallNumber = parts[7];
+            if (!int.TryParse(parts[8], out var tickets))
+                return null;
+            if (!int.TryParse(parts[9], out tickets))
+                return null;
 
             
             // Opretter movie objekt
@@ -77,6 +82,7 @@ namespace The_Movies.Model
                 PlayTime = playTime,
                 HallNumber = hallNumber,
                 PlayDuration = playDuration,
+                Tickets = tickets,
             };
 
 

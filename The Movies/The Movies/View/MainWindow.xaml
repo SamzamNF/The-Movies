@@ -20,27 +20,47 @@
         </Grid.RowDefinitions>
 
         
-        <!--Top Panel Buttons-->
+        <!--Top Panel Knapper til at skifte view med-->
 
         <StackPanel Orientation="Horizontal">
             <Button Width="90" Height="35" HorizontalAlignment="Left" Margin="10,5,5,5" FontWeight="Bold" FontSize="16"
                     Content="Film"
-                    Command="{Binding ShowMovieViewCommand}">
+                    Background="#333333"
+                    Foreground="White"
+                    Command="{Binding ShowMovieViewCommand}" FontFamily="Ink Free">
             
             </Button>
 
             <Button Width="100" Height="35" HorizontalAlignment="Left" Margin="15,5,5,5" FontWeight="Bold" FontSize="16"
                     Content="Program"
-                    Command="{Binding ShowProgramViewCommand}">
+                    Background="#333333"
+                    Foreground="White"
+                    Command="{Binding ShowProgramViewCommand}" FontFamily="Ink Free">
             
              </Button>
-            
+
+            <Button Width="100" Height="35" HorizontalAlignment="Left" Margin="15,5,5,5"
+                    Background="#333333"
+                    Foreground="White"
+                    Content="Kunde"
+                    FontWeight="Bold"
+                    FontSize="16" FontFamily="Ink Free"/>
+
+
+            <Button Width="100" Height="35" HorizontalAlignment="Left" Margin="15,5,5,5"
+                    Background="#333333"
+                    Foreground="White"
+                    Content="Reservation"
+                    FontWeight="Bold"
+                    FontSize="16" FontFamily="Ink Free"/>
+
         </StackPanel>
         
 
 
 
-
+        <!-- Contentcontrol at skifte hvad vores CurrentView er sat til -->
+        
         <ContentControl Content="{Binding CurrentView}"
                         Grid.Row="1"
                         Margin="10"/>
