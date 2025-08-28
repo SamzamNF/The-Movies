@@ -255,6 +255,17 @@ namespace The_Movies.ViewModel
         private string _movie {  get; set; }
         private int _ticketAmount {  get; set; }
         private int _phoneNumber { get; set; }
+        private int _reservationID { get; set; }
+
+        public int ReservationID
+        {
+            get => _reservationID;
+            set
+            {
+                _reservationID = value; 
+                OnPropertyChanged();
+            }
+        }
 
         public string Movie
         {
