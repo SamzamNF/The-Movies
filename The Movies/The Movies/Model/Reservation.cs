@@ -8,7 +8,7 @@ namespace The_Movies.Model
 {
     public class Reservation
     {
-        public int Id { get; set; }
+        public int CustomerID { get; set; }
         public int TicketAmount { get; set; }
         public string Movie {  get; set; }
         public DateTime ReservationDateTime { get; set; }
@@ -16,7 +16,7 @@ namespace The_Movies.Model
 
         public override string ToString()
         {
-            return $"{Id};{TicketAmount};{Movie};{ReservationDateTime:dd-MM-yyyy HH:mm}";
+            return $"{CustomerID};{TicketAmount};{Movie};{ReservationDateTime:dd-MM-yyyy HH:mm}";
         }
 
         public static Reservation FromString(string data)
@@ -29,7 +29,7 @@ namespace The_Movies.Model
             if (parts.Length != 4)
                 return null;
 
-            if (!int.TryParse(parts[0], out var rID))
+            if (!int.TryParse(parts[0], out var customerID))
                 return null;
             if (!int.TryParse(parts[1], out var rTicketAmount))
                 return null;
@@ -40,7 +40,7 @@ namespace The_Movies.Model
 
             var reservation = new Reservation()
             {
-                Id = rID,
+                CustomerID = customerID,
                 TicketAmount = rTicketAmount,
                 Movie = movie,
                 ReservationDateTime = ReservationTime

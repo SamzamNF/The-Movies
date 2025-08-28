@@ -11,12 +11,12 @@ namespace The_Movies.Model
         public string Name { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public int ReservationID { get; set; }
+        public int ID { get; set; }
 
 
         public override string ToString()
         {
-            return $"{Name};{Email};{PhoneNumber};{ReservationID}";
+            return $"{Name};{Email};{PhoneNumber};{ID}";
         }
 
         public static Customer FromString(string data)
@@ -33,7 +33,7 @@ namespace The_Movies.Model
             var phoneNumber = parts[2];
             
             // Hvis værdien kan laves til en integer, så sættes det i variablen reservationID - Ellers returneres null
-            if (!int.TryParse(parts[3], out var reservationID))
+            if (!int.TryParse(parts[3], out var customerID))
                 return null;
 
             Customer customer = new Customer()
@@ -41,7 +41,7 @@ namespace The_Movies.Model
                 Name = name,
                 Email = email,
                 PhoneNumber = phoneNumber,
-                ReservationID = reservationID
+                ID = customerID
             };
             return customer;
         }

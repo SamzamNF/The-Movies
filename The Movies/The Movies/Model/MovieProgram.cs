@@ -19,7 +19,7 @@ namespace The_Movies.Model
         
         public override string ToString()
         {
-            string genres = string.Join(",", Movie.Genres); // Brug komma inde i feltet, semikolon mellem felter
+            string genres = string.Join(",", Movie.Genres); // Bruger komma inde i feltet, semikolon mellem felter
 
             return $"{Movie.Title};{Movie.Director};{Movie.PremierDate:dd-MM-yyyy};{genres};{Movie.Duration};{PlayDuration};{PlayTime:dd-MM-yyyy HH:mm};{HallNumber};{Tickets};{MovieProgramID}";
         }
