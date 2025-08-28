@@ -35,14 +35,14 @@
             <Label Content="Biograf:" Margin="0,5,0,0" />
             <ComboBox ItemsSource="{Binding PLACEHOLDER}"
           SelectedItem="{Binding SelectedMovie}"
-          DisplayMemberPath="Title"
-          Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="1"/>
+          DisplayMemberPath="Title" Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="1"/>
+       
 
             <Label Content="Film:" Margin="0,13,0,0" />
             <ComboBox ItemsSource="{Binding PLACEHOLDER}"
           SelectedItem="{Binding SelectedMovie}"
-          DisplayMemberPath="Title"
-          Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="2"/>
+          DisplayMemberPath="Title" Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="2"/>
+         
 
             <!-- Inputfelter -->
             <Label Content="Tlf.Nummer:" Margin="0,40,0,0"/>
