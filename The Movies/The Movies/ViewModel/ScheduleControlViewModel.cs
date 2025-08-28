@@ -120,10 +120,10 @@ namespace The_Movies.ViewModel
             this._movieProgramRepo = mpRepository;
             MoviePrograms = new ObservableCollection<MovieProgram>();
 
-            // Henter film ned og smider dem i en liste
+            // Henter film ned og smider dem i en listeMin 
             _csvMovieGuide = new CsvMovieGuide();
             Movies = new ObservableCollection<Movie>();
-            LoadMoviesAsync();
+            _ = LoadMoviesAsync();
         }
 
         // Henter alle film fra repository
@@ -346,24 +346,18 @@ namespace The_Movies.ViewModel
 
             };
 
-            if (this.TicketAmount > SelectedMovieProgram.Tickets)
-            {
-                return;
-            }
 
             SelectedMovieProgram.Tickets -= this.TicketAmount;
 
 
-            TicketAmount = 1;
-
+            _reservationProgramRepo.CreateReservation(reservation);
             ReservationList.Add(reservation);
 
 
         }
 
-        private bool CanAddReservation() => !string.IsNullOrEmpty(Movie);
 
-        public RelayCommand AddReservationCommand => new RelayCommand(execute => AddReservation(), canExecute => CanAddReservation());
+        public RelayCommand AddReservationCommand => new RelayCommand(_ => AddReservation());
 
 
 

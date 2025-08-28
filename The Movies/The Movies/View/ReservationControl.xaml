@@ -23,7 +23,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ReservationID}" Width="*" />
                 <DataGridTextColumn Header="Film" Binding="{Binding Movie}" Width="*" />
-                <DataGridTextColumn Header="Tlf. Nummer" Binding="{Binding PhoneNumber}" Width="*" />
+                <DataGridTextColumn Header="Kunde ID" Binding="{Binding CustomerID}" Width="*" />
                 <DataGridTextColumn Header="Antal Biletter" Binding="{Binding TicketAmount}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
