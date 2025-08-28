@@ -8,6 +8,7 @@ namespace The_Movies.Model
 {
     public class Reservation
     {
+        public int ReservationID { get; set; }
         public int CustomerID { get; set; }
         public int TicketAmount { get; set; }
         public string Movie {  get; set; }
@@ -16,7 +17,7 @@ namespace The_Movies.Model
 
         public override string ToString()
         {
-            return $"{CustomerID};{TicketAmount};{Movie};{ReservationDateTime:dd-MM-yyyy HH:mm}";
+            return $"{ReservationID};{CustomerID};{TicketAmount};{Movie};{ReservationDateTime:dd-MM-yyyy HH:mm}";
         }
 
         public static Reservation FromString(string data)
@@ -26,20 +27,23 @@ namespace The_Movies.Model
 
             var parts = data.Split(';');
 
-            if (parts.Length != 4)
+            if (parts.Length != 5)
                 return null;
 
-            if (!int.TryParse(parts[0], out var customerID))
+            if (!int.TryParse(parts[0], out var reservationId))
                 return null;
-            if (!int.TryParse(parts[1], out var rTicketAmount))
+            if (!int.TryParse(parts[1], out var customerID))
                 return null;
-            string movie = parts[2];
+            if (!int.TryParse(parts[2], out var rTicketAmount))
+                return null;
+            string movie = parts[3];
 
-            var ReservationTime = DateTime.ParseExact(parts[3], "dd-MM-yyyy HH:mm", null);
+            var ReservationTime = DateTime.ParseExact(parts[4], "dd-MM-yyyy HH:mm", null);
 
 
             var reservation = new Reservation()
             {
+                ReservationID = reservationId,
                 CustomerID = customerID,
                 TicketAmount = rTicketAmount,
                 Movie = movie,
