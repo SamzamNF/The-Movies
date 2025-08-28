@@ -40,7 +40,7 @@ namespace The_Movies.ViewModel
                 OnPropertyChanged();
             }
         }
-
+      
         public string Email
         {
             get => _email;
