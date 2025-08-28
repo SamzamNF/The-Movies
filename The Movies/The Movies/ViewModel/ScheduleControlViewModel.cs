@@ -105,9 +105,9 @@ namespace The_Movies.ViewModel
 
         
         // Konstruktør
-        public ScheduleControlViewModel()
+        public ScheduleControlViewModel(IMovieProgramRepo mpRepository)
         {
-            _movieProgramRepo = new IMovieProgramFileRepo("movie_programs.txt"); // Dette kan nok fjernes til code-behind (Txt delen) når det er lavet
+            this._movieProgramRepo = mpRepository;
             _csvMovieGuide = new CsvMovieGuide();
             Movies = new ObservableCollection<Movie>();
             MoviePrograms = new ObservableCollection<MovieProgram>();
@@ -225,6 +225,10 @@ namespace The_Movies.ViewModel
 
         // Knapper til knapper
         public RelayCommand AddMovieProgramCommand => new RelayCommand(execute => AddMovieProgram(), canExecute => CanAddMovieProgram());
+
+
+
+        // ** ------------------------------------------------------------------------------------------- **
 
 
 
