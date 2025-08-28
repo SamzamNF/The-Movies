@@ -314,9 +314,17 @@ namespace The_Movies.ViewModel
 
             };
 
+            if (this.TicketAmount > SelectedMovieProgram.Tickets)
+            {
+                return;
+            }
+            SelectedMovieProgram.Tickets -= this.TicketAmount;
+
+
+            TicketAmount = 1;
+
             ReservationList.Add(reservation);
 
-            TicketAmount = default();
 
         }
 
