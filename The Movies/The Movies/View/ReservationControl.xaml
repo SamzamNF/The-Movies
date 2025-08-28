@@ -29,19 +29,19 @@
         </DataGrid>
 
         <!-- Højre: Inputfelter, knapper og genreboks -->
-        <StackPanel Grid.Column="3" VerticalAlignment="Top" Margin="10,0,0,0">
+        <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="10,0,0,0">
            
            <!--ComboBoxes-->
             <Label Content="Biograf:" Margin="0,5,0,0" />
             <ComboBox ItemsSource="{Binding Cinemas}"
           SelectedItem="{Binding SelectedCinema}"
-          DisplayMemberPath="Title" Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="1"/>
+          DisplayMemberPath="CinemaName" Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="1"/>
        
 
             <Label Content="Film:" Margin="0,15,0,0" />
             <ComboBox ItemsSource="{Binding MoviePrograms}"
           SelectedItem="{Binding SelectedMovieProgram}"
-          DisplayMemberPath="Title" Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="2"/>
+          DisplayMemberPath="Movie.Title" Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="2"/>
 
 
             <Label Content="Tlf. Nummer:" Margin="0,40,0,0" />
