@@ -24,7 +24,9 @@ namespace The_Movies.View
         {
             InitializeComponent();
             IMovieProgramRepo movieProgramRepo = new IMovieProgramFileRepo("movie_programs.txt");
-            ScheduleControlViewModel mv = new ScheduleControlViewModel(movieProgramRepo);
+            ICustomerProgramRepo customerRepo = new CustomerProgramFileRepo("customer.txt");
+            IReservationProgramRepo reserveRepo = new ReservationProgramFileRepo("reservations.txt");
+            ScheduleControlViewModel mv = new ScheduleControlViewModel(movieProgramRepo, customerRepo, reserveRepo);
             DataContext = mv;
         }
     }

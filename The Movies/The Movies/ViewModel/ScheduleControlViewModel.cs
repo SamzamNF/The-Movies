@@ -17,6 +17,8 @@ namespace The_Movies.ViewModel
         // Repository objekt
         private readonly CsvMovieGuide _csvMovieGuide;
         private readonly IMovieProgramRepo _movieProgramRepo;
+        private readonly IReservationProgramRepo _reservationProgramRepo;
+        private readonly ICustomerProgramRepo _customerProgramRepo;
 
         // Liste med Biografer, som bruges til ComboBoxen og deres tilhørende sale som er tilføjet som lister under deres respektive biografer        
         public List<Cinema> Cinemas { get; set; } = new()
@@ -105,11 +107,16 @@ namespace The_Movies.ViewModel
 
         
         // Konstruktør
-        public ScheduleControlViewModel(IMovieProgramRepo mpRepository)
+        public ScheduleControlViewModel(IMovieProgramRepo mpRepository, ICustomerProgramRepo cRepository, IReservationProgramRepo rRepository)
         {
+            this._customerProgramRepo = cRepository;
+            this._reservationProgramRepo = rRepository;
+            
+            // Henter MovieProgrammer ned og smider dem i en liste
             this._movieProgramRepo = mpRepository;
             MoviePrograms = new ObservableCollection<MovieProgram>();
 
+            // Henter film ned og smider dem i en liste
             _csvMovieGuide = new CsvMovieGuide();
             Movies = new ObservableCollection<Movie>();
             LoadMoviesAsync();
@@ -318,6 +325,7 @@ namespace The_Movies.ViewModel
             {
                 return;
             }
+
             SelectedMovieProgram.Tickets -= this.TicketAmount;
 
 
