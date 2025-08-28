@@ -36,27 +36,27 @@
             <ComboBox ItemsSource="{Binding Cinemas}"
                       SelectedItem="{Binding SelectedCinema}"
                       DisplayMemberPath="CinemaName"
-                      Canvas.Top="25" Width="283" Canvas.ZIndex="3"/>
+                      Canvas.Top="25" Width="260" Canvas.ZIndex="3"/>
 
             <Label Content="Sal:" Canvas.Top="60"/>
             <ComboBox ItemsSource="{Binding Halls}"
                       SelectedItem="{Binding SelectedHall}"
                       DisplayMemberPath="HallNumber"
-                      Canvas.Top="85" Width="283" Canvas.ZIndex="2"/>
+                      Canvas.Top="85" Width="260" Canvas.ZIndex="2"/>
 
             <Label Content="Film:" Canvas.Top="120"/>
             <ComboBox ItemsSource="{Binding Movies}"
                       SelectedItem="{Binding SelectedMovie}"
                       DisplayMemberPath="Title"
-                      Canvas.Top="145" Width="283" Canvas.ZIndex="1"/>
+                      Canvas.Top="145" Width="260" Canvas.ZIndex="1"/>
             
             <!-- Felter -->
             
             <Label Content="Tidspunkt:" Canvas.Top="180"/>
-            <DatePicker SelectedDate="{Binding PlayTime, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="205" Width="283"/>
+            <DatePicker SelectedDate="{Binding PlayTime, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="205" Width="260"/>
 
             <Label Content="Billetter:" Canvas.Top="230"/>
-            <TextBox Text="{Binding Tickets, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="255" Width="283"
+            <TextBox Text="{Binding Tickets, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="255" Width="260"
                      Height="25"
                      Padding="2"/>
 
