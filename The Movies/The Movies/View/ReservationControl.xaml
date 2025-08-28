@@ -46,8 +46,8 @@
 
             <Label Content="Tlf. Nummer:" Margin="0,40,0,0" />
             <ComboBox ItemsSource="{Binding PLACEHOLDER}"
-        SelectedItem="{Binding SelectedMovie}"
-        DisplayMemberPath="Title" Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="2"/>
+          SelectedItem="{Binding SelectedMovie}"
+          DisplayMemberPath="Title" Canvas.Top="145" Width="270" Height="22" Canvas.ZIndex="2"/>
             
             
             <!-- Inputfelter -->
