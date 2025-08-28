@@ -15,16 +15,16 @@
 
         <!-- Venstre: DataGrid -->
         <DataGrid Grid.Column="0"
-        ItemsSource="{Binding PLACEHOLDER}"
+        ItemsSource="{Binding Customers}"
         AutoGenerateColumns="False"
         Margin="0,0,10,0"
         IsReadOnly="True"
         Grid.ColumnSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Fornavn" Binding="{Binding PLACEHOLDER}" Width="*" />
-                <DataGridTextColumn Header="Efternavn" Binding="{Binding PLACEHOLDER}" Width="*" />
-                <DataGridTextColumn Header="Tlf. Nummer" Binding="{Binding PLACEHOLDER}" Width="*" />
-                <DataGridTextColumn Header="Email" Binding="{Binding PLACEHOLDER}" Width="*" />
+                <DataGridTextColumn Header="Navn" Binding="{Binding FirstName}" Width="*" />
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                <DataGridTextColumn Header="Tlf. Nummer" Binding="{Binding PhoneNumber}" Width="*" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -33,23 +33,20 @@
 
             <!-- Inputfelter -->
             <Label Content="Fornavn:" Margin="0,5,0,0"/>
-            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22" />
-
-            <Label Content="Efternavn:" Margin="0,5,0,0"/>
-            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22"/>
+            <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22" />
             
             
 
             <Label Content="Tlf. Nummer:" Margin="0,30,0,0"/>
-            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22"/>
+            <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22"/>
 
             <Label Content="Email:" />
-            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22"/>
+            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22"/>
 
             <!-- Tillføj Knap -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                 <Button Content="Tilføj Kunde" Width="250" Height="25" Margin="0,20,10,0"
-              Command="{Binding PLACEHOLDER}"
+              Command="{Binding AddCustomerCommand}"
               CommandParameter="{Binding ElementName=GenreListBox, Path=SelectedItems}"
                   Background="DeepSkyBlue"/>
             </StackPanel>

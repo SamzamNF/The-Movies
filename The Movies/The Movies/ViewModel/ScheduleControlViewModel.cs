@@ -254,6 +254,7 @@ namespace The_Movies.ViewModel
 
         private string _movie {  get; set; }
         private int _ticketAmount {  get; set; }
+        private int _phoneNumber { get; set; }
 
         public string Movie
         {
@@ -271,6 +272,15 @@ namespace The_Movies.ViewModel
             set
             {
                 _ticketAmount = value;
+                OnPropertyChanged();
+            }
+        }
+        public int PhoneNumber
+        {
+            get => _phoneNumber;
+            set
+            {
+                _phoneNumber = value;
                 OnPropertyChanged();
             }
         }

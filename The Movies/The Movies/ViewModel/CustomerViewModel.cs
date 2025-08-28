@@ -111,5 +111,7 @@ namespace The_Movies.ViewModel
         public RelayCommand AddCustomerCommand => new RelayCommand(execute => AddCustomer(), canExecute => CanAddCustomer());
 
 
+
+
     }
 }
