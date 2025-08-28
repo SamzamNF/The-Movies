@@ -27,6 +27,7 @@ namespace The_Movies.View
             InitializeComponent();
             ICustomerProgramRepo customerRepo = new CustomerProgramFileRepo("customer.txt");
             CustomerViewModel mv = new CustomerViewModel(customerRepo);
+            DataContext = mv;
         }
     }
 }

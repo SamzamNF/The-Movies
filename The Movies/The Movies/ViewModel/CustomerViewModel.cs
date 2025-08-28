@@ -80,6 +80,7 @@ namespace The_Movies.ViewModel
         public CustomerViewModel(ICustomerProgramRepo cRepository)
         {
             _customerProgramRepo = cRepository;
+            Customers = new ObservableCollection<Customer>(_customerProgramRepo.GetAll());
         }
 
 

@@ -21,8 +21,8 @@
         IsReadOnly="True"
         Grid.ColumnSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Navn" Binding="{Binding FirstName}" Width="*" />
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                <DataGridTextColumn Header="Navn" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="*" />
                 <DataGridTextColumn Header="Tlf. Nummer" Binding="{Binding PhoneNumber}" Width="*" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />
             </DataGrid.Columns>
@@ -46,8 +46,7 @@
             <!-- Tillføj Knap -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                 <Button Content="Tilføj Kunde" Width="250" Height="25" Margin="0,20,10,0"
-              Command="{Binding AddCustomerCommand}"
-              CommandParameter="{Binding ElementName=GenreListBox, Path=SelectedItems}"
+                            Command="{Binding AddCustomerCommand}"
                   Background="DeepSkyBlue"/>
             </StackPanel>
         </StackPanel>
