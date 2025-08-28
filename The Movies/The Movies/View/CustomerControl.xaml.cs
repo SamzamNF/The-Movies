@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using The_Movies.Repository;
+using The_Movies.ViewModel;
 
 namespace The_Movies.View
 {
@@ -23,6 +25,8 @@ namespace The_Movies.View
         public CustomerControl()
         {
             InitializeComponent();
+            ICustomerProgramRepo customerRepo = new CustomerProgramFileRepo("customer.txt");
+            CustomerViewModel mv = new CustomerViewModel(customerRepo);
         }
     }
 }

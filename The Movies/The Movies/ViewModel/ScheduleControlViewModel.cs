@@ -111,7 +111,11 @@ namespace The_Movies.ViewModel
         {
             this._customerProgramRepo = cRepository;
             this._reservationProgramRepo = rRepository;
-            
+
+            // Henter Customers & Reservationer ind i lister
+            Customers = new ObservableCollection<Customer>(_customerProgramRepo.GetAll());
+            ReservationList = new ObservableCollection<Reservation>(_reservationProgramRepo.GetAll());
+
             // Henter MovieProgrammer ned og smider dem i en liste
             this._movieProgramRepo = mpRepository;
             MoviePrograms = new ObservableCollection<MovieProgram>();
@@ -244,7 +248,7 @@ namespace The_Movies.ViewModel
         public MovieProgram SelectedMovieProgram
         {
             get { return _selectedMovieProgram; }
-            set { _selectedMovieProgram = value; }
+            set { _selectedMovieProgram = value; OnPropertyChanged(); }
         }
 
 

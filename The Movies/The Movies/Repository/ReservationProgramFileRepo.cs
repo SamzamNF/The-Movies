@@ -20,7 +20,7 @@ namespace The_Movies.Repository
                 File.Create(_filePath).Close();
         }
 
-        private List<Reservation> GetAll()
+        public List<Reservation> GetAll()
         {
             var list = new List<Reservation>();
             try
@@ -47,26 +47,23 @@ namespace The_Movies.Repository
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
-        public Reservation CreateReservation(Customer customer, MovieProgram program, int amount)
+        public void CreateReservation(Reservation reservation)
         {
-            var reservation = new Reservation
-            {
-                CustomerID = customer.ID,
-                TicketAmount = amount,
-                Movie = program.Movie.Title,
-                ReservationDateTime = program.PlayTime
-            };
-
             try
             {
-                var all = GetAll();
-                reservation.ReservationID = all.Any() ? all.Max(x => x.ReservationID) + 1 : 1;
-                using var sw = new StreamWriter(_filePath, append: true);
-                sw.WriteLine(reservation.ToString());
+                using (StreamWriter sw = new StreamWriter(_filePath, append: true))
+                {
+                    sw.WriteLine(reservation.ToString());
+                }
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
-
-            return reservation;
+            catch (IOException msg)
+            {
+                Console.WriteLine(msg.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public Reservation? FindReservation(int reservationID)

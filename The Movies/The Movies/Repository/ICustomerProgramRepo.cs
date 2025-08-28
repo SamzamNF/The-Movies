@@ -13,5 +13,6 @@ namespace The_Movies.Repository
         void Edit(Customer customer);
         Customer? FindCustomer(Customer customer);
         void DeleteCustomer(Customer customer);
+        public List<Customer> GetAll();
     }
 }

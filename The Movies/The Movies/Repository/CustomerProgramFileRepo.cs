@@ -22,7 +22,7 @@ namespace The_Movies.Repository
             }
         }
 
-        private List<Customer> GetAll()
+        public List<Customer> GetAll()
         {
             var list = new List<Customer>();
             try

@@ -9,9 +9,10 @@ namespace The_Movies.Repository
 {
     public interface IReservationProgramRepo
     {
-        
-        Reservation CreateReservation(Customer customer, MovieProgram program, int amount);
+
+        public void CreateReservation(Reservation reservation);
         bool CancelReservation(int reservationID);
         Reservation? FindReservation(int reservationID);
+        public List<Reservation> GetAll();
     }
 }

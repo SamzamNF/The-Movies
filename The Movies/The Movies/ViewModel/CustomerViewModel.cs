@@ -6,11 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using The_Movies.Model;
 using The_Movies.MVVM;
+using The_Movies.Repository;
 
 namespace The_Movies.ViewModel
 {
     public class CustomerViewModel : ViewModelBase
     {
+        private readonly ICustomerProgramRepo _customerProgramRepo;
+
         private int _id {  get; set; }
         private string _firstName { get; set; }
         private string _email { get; set; }
@@ -74,9 +77,9 @@ namespace The_Movies.ViewModel
         }
 
         // Konstruktør
-        public CustomerViewModel()
+        public CustomerViewModel(ICustomerProgramRepo cRepository)
         {
-            // Noget med repository og en getall på alle customers
+            _customerProgramRepo = cRepository;
         }
 
 
@@ -95,7 +98,8 @@ namespace The_Movies.ViewModel
             };
 
             Customers.Add(customer);
-            // Mangler at tilføje til repo
+            _customerProgramRepo.Add(customer);
+
 
             FirstName = string.Empty;
             Email = string.Empty;
