@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="The_Movies.View.ReservationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:The_Movies.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="452*"/>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="293*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Venstre: DataGrid -->
+        <DataGrid Grid.Column="0"
+           ItemsSource="{Binding PLACEHOLDER}"
+           AutoGenerateColumns="False"
+           Margin="0,0,10,0"
+           IsReadOnly="True"
+           Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Biograf" Binding="{Binding PLACEHOLDER}" Width="*" />
+                <DataGridTextColumn Header="Film" Binding="{Binding PLACEHOLDER}" Width="*" />
+                <DataGridTextColumn Header="Tlf. Nummer" Binding="{Binding PLACEHOLDER}" Width="*" />
+                <DataGridTextColumn Header="Antal Biletter" Binding="{Binding PLACEHOLDER}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Højre: Inputfelter, knapper og genreboks -->
+        <StackPanel Grid.Column="3" VerticalAlignment="Top" Margin="10,0,0,0">
+           
+           <!--ComboBoxes-->
+            <Label Content="Biograf:" Margin="0,5,0,0" />
+            <ComboBox ItemsSource="{Binding PLACEHOLDER}"
+          SelectedItem="{Binding SelectedMovie}"
+          DisplayMemberPath="Title"
+          Canvas.Top="145" Width="283" Canvas.ZIndex="1"/>
+
+            <Label Content="Film:" Margin="0,5,0,0" />
+            <ComboBox ItemsSource="{Binding PLACEHOLDER}"
+          SelectedItem="{Binding SelectedMovie}"
+          DisplayMemberPath="Title"
+          Canvas.Top="145" Width="283" Canvas.ZIndex="2"/>
+
+            <!-- Inputfelter -->
+            <Label Content="Tlf.Nummer:" Margin="0,30,0,0"/>
+            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" />
+
+            <Label Content="Antal Biletter:" />
+            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+            <!-- Tillføj Knap -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Content="Tilføj Reservation" Width="250" Height="25" Margin="0,20,10,0"
+                 Command="{Binding PLACEHOLDER}"
+                 CommandParameter="{Binding ElementName=GenreListBox, Path=SelectedItems}"
+                     Background="DeepSkyBlue"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
