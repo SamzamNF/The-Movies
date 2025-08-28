@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using The_Movies.Repository;
 using The_Movies.ViewModel;
 
 namespace The_Movies.View
@@ -22,7 +23,10 @@ namespace The_Movies.View
         public ScheduleControl()
         {
             InitializeComponent();
-            ScheduleControlViewModel mv = new ScheduleControlViewModel();
+            IMovieProgramRepo movieProgramRepo = new IMovieProgramFileRepo("movie_programs.txt");
+            ICustomerProgramRepo customerRepo = new CustomerProgramFileRepo("customer.txt");
+            IReservationProgramRepo reserveRepo = new ReservationProgramFileRepo("reservations.txt");
+            ScheduleControlViewModel mv = new ScheduleControlViewModel(movieProgramRepo, customerRepo, reserveRepo);
             DataContext = mv;
         }
     }

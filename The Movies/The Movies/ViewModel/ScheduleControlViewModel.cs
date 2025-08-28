@@ -17,6 +17,8 @@ namespace The_Movies.ViewModel
         // Repository objekt
         private readonly CsvMovieGuide _csvMovieGuide;
         private readonly IMovieProgramRepo _movieProgramRepo;
+        private readonly IReservationProgramRepo _reservationProgramRepo;
+        private readonly ICustomerProgramRepo _customerProgramRepo;
 
         // Liste med Biografer, som bruges til ComboBoxen og deres tilhørende sale som er tilføjet som lister under deres respektive biografer        
         public List<Cinema> Cinemas { get; set; } = new()
@@ -105,12 +107,18 @@ namespace The_Movies.ViewModel
 
         
         // Konstruktør
-        public ScheduleControlViewModel()
+        public ScheduleControlViewModel(IMovieProgramRepo mpRepository, ICustomerProgramRepo cRepository, IReservationProgramRepo rRepository)
         {
-            _movieProgramRepo = new IMovieProgramFileRepo("movie_programs.txt"); // Dette kan nok fjernes til code-behind (Txt delen) når det er lavet
+            this._customerProgramRepo = cRepository;
+            this._reservationProgramRepo = rRepository;
+            
+            // Henter MovieProgrammer ned og smider dem i en liste
+            this._movieProgramRepo = mpRepository;
+            MoviePrograms = new ObservableCollection<MovieProgram>();
+
+            // Henter film ned og smider dem i en liste
             _csvMovieGuide = new CsvMovieGuide();
             Movies = new ObservableCollection<Movie>();
-            MoviePrograms = new ObservableCollection<MovieProgram>();
             LoadMoviesAsync();
         }
 
@@ -228,6 +236,109 @@ namespace The_Movies.ViewModel
 
 
 
+        // ** ----------------------------------------- Kode til at oprette reservation -------------------------------------------------- **
+
+
+        private MovieProgram _selectedMovieProgram;
+
+        public MovieProgram SelectedMovieProgram
+        {
+            get { return _selectedMovieProgram; }
+            set { _selectedMovieProgram = value; }
+        }
+
+
+        private string _movie {  get; set; }
+        private int _ticketAmount {  get; set; }
+
+        public string Movie
+        {
+            get => _movie;
+            set
+            {
+                _movie = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int TicketAmount
+        {
+            get => _ticketAmount;
+            set
+            {
+                _ticketAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Reservation> _reservationList;
+
+        public ObservableCollection<Reservation> ReservationList
+        {
+            get => _reservationList;
+            private set
+            {
+                _reservationList = value;
+                OnPropertyChanged();
+
+            }
+        }
+
+        private ObservableCollection<Customer> _customers;
+
+        public ObservableCollection<Customer> Customers
+        {
+            get => _customers;
+            private set
+            {
+                _customers = value;
+                OnPropertyChanged();
+
+            }
+        }
+
+        private Customer _selectedCustomer;
+
+        public Customer SelectedCustomer
+        {
+            get { return _selectedCustomer; }
+            set { _selectedCustomer = value;  OnPropertyChanged(); }
+        }
+
+
+
+        private void AddReservation()
+        {
+            int nextId = ReservationList.Any() ? ReservationList.Max(c => c.ReservationID) + 1 : 1;
+
+            var reservation = new Reservation
+            {
+                ReservationID = nextId,
+                Movie = SelectedMovieProgram.Movie.Title,
+                TicketAmount = this.TicketAmount,
+                CustomerID = SelectedCustomer.ID,
+                ReservationDateTime = SelectedMovieProgram.PlayTime
+
+            };
+
+            if (this.TicketAmount > SelectedMovieProgram.Tickets)
+            {
+                return;
+            }
+
+            SelectedMovieProgram.Tickets -= this.TicketAmount;
+
+
+            TicketAmount = 1;
+
+            ReservationList.Add(reservation);
+
+
+        }
+
+        private bool CanAddReservation() => !string.IsNullOrEmpty(Movie);
+
+        public RelayCommand AddReservationCommand => new RelayCommand(execute => AddReservation(), canExecute => CanAddReservation());
 
 
 
