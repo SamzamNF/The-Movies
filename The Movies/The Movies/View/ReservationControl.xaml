@@ -36,20 +36,22 @@
             <ComboBox ItemsSource="{Binding PLACEHOLDER}"
           SelectedItem="{Binding SelectedMovie}"
           DisplayMemberPath="Title"
-          Canvas.Top="145" Width="283" Canvas.ZIndex="1"/>
+          Canvas.Top="145" Width="283" Height="22" Canvas.ZIndex="1"/>
 
-            <Label Content="Film:" Margin="0,5,0,0" />
+            <Label Content="Film:" Margin="0,13,0,0" />
             <ComboBox ItemsSource="{Binding PLACEHOLDER}"
           SelectedItem="{Binding SelectedMovie}"
           DisplayMemberPath="Title"
-          Canvas.Top="145" Width="283" Canvas.ZIndex="2"/>
+          Canvas.Top="145" Width="283" Height="22" Canvas.ZIndex="2"/>
 
             <!-- Inputfelter -->
-            <Label Content="Tlf.Nummer:" Margin="0,30,0,0"/>
-            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" />
+            <Label Content="Tlf.Nummer:" Margin="0,40,0,0"/>
+            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22" />
 
             <Label Content="Antal Biletter:" />
-            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding PLACEHOLDER, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22"/>
+
+            
 
             <!-- Tillføj Knap -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >

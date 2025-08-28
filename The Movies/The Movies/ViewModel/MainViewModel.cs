@@ -21,7 +21,7 @@ namespace The_Movies.ViewModel
         public MainViewModel()
         {
             CurrentView = new MovieControl();
-        }       
+        }
         
         //Opretter view felt
         private object _currentView;
@@ -41,6 +41,14 @@ namespace The_Movies.ViewModel
         public RelayCommand ShowMovieViewCommand => new RelayCommand(execute => ShowMovieView());
 
         public RelayCommand ShowProgramViewCommand => new RelayCommand(execute => ShowProgramView());
+        
+        public RelayCommand ShowCustomerViewCommand => new RelayCommand(execute => CustomerControlView());
+
+        public RelayCommand ShowReservationViewCommand => new RelayCommand(execute => ShowReservationView());
+
+        
+
+
 
         //Skifter det det valgte view til MovieControl
         private void ShowMovieView()
@@ -52,7 +60,17 @@ namespace The_Movies.ViewModel
         {
             CurrentView = new ScheduleControl(); // Skift til ScheduleControlView
         }
+        private void CustomerControlView()
+        {
+            CurrentView = new CustomerControl(); // Skift til CustomerControlView
+        }
 
+        private void ShowReservationView()
+        {
+            CurrentView = new ReservationControl(); // Skift til ScheduleControlView
+        }
+
+        
     }
 
 

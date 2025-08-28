@@ -61,10 +61,10 @@
 
             <!-- Inputfelter -->
             <Label Content="Titel:"/>
-            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22"/>
 
             <Label Content="Varighed:"/>
-            <TextBox Text="{Binding Duration, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding Duration, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="22"/>
 
             <!-- Knapper -->
             
